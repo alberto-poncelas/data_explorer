@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app>
+  <body>
+    <div>
+      <h1>PCA</h1>
+    </div>
+
+    <style>
+    .chart {
+
+    }
+
+    .main text {
+        font: 10px sans-serif;  
+    }
+
+    .axis line, .axis path {
+        shape-rendering: crispEdges;
+        stroke: black;
+        fill: none;
+    }
+
+    circle {
+        fill: steelblue;
+        stroke: #000;
+        stroke-width: 1px;
+    }
+
+    </style>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="js/ControllerApi.js"></script>
+
+    <div id="dataApi" ng-controller="ControllerApi" data-ng-init="getJSON('dataApi')" url="http://127.0.0.1:5000/" callback="showPCA"/>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="d3.v3.min.js"></script>
+    <script src="js/scatterPlot.js"></script>
+
+    <script>
+
+      var margin = {top: 20, right: 15, bottom: 60, left: 60}
+      var width = 960 - margin.left - margin.right
+      var height = 500 - margin.top - margin.bottom;
+
+      showPCA=function(json){
+        scatter(json);
+      }
+
+    </script>
+
+  </body>
+</html

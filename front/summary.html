@@ -1,0 +1,82 @@
+
+<html ng-app>
+<body>
+
+<div>
+  <h1>SUMMARY</h1>
+</div>
+
+<style>
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.box {
+  font: 10px sans-serif;
+}
+
+.box line,
+.box rect,
+.box circle {
+  fill: steelblue;
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.box .center {
+  stroke-dasharray: 3,3;
+}
+
+
+.axis {
+  font: 12px sans-serif;
+}
+ 
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+ 
+.x.axis path { 
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<script src="js/ControllerApi.js"></script>
+
+<div id="dataApi" ng-controller="ControllerApi" data-ng-init="getJSON('dataApi')" url="http://127.0.0.1:5000/" callback="summaryFunction"/>
+
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.v3.min.js"></script>
+<script src="js/myboxplot.js"></script>
+<script>
+
+  var margin = {top: 30, right: 50, bottom: 70, left: 50};
+  var  width = 300 - margin.left - margin.right;
+  var height = 400 - margin.top - margin.bottom;
+  	
+
+  summaryFunction=function(summaryJson){
+    var keys = Object.keys(summaryJson)
+
+    for (var k in keys) {
+    	var key=keys[k]
+    	var json=summaryJson[key]
+    	var option={"title":key,"xAxisName":'',"yAxisName":''}
+    	createBoxplot(json,option)
+    }
+
+  }
+
+</script>
+
+
+</html>
